@@ -88,10 +88,36 @@ bot.on('callback_query', (callbackQuery) => {
 bot.onText(/\/keyboard/, (msg, match) => {
     bot.sendMessage(msg.chat.id, 'Alternative keybaord layout', {
         'reply_markup': {
-            'keyboard': [['Sample text', 'Second sample'], ['Keyboard'], ['I\'m robot']]
+            'keyboard': [['Sample text', 'Second sample'], ['Keyboard'], ['I\'m robot']],
+            resize_keyboard: true,
+            one_time_keyboard: true,
+            force_reply: true,
         }
     });
 });
+
+// Keyboard layout for requesting phone number access
+const requestPhoneKeyboard = {
+    "reply_markup": {
+        "one_time_keyboard": true,
+        "keyboard": [[{
+            text: "My phone number",
+            request_contact: true,
+            one_time_keyboard: true
+        }], ["Cancel"]]
+    }
+};
+
+// Listener (handler) for retrieving phone number
+bot.onText(/\/phone/, (msg) => {
+    bot.sendMessage(msg.chat.id, 'Can we get access to your phone number?', requestPhoneKeyboard);
+});
+
+// Handler for phone number request when user gives permission
+bot.on('contact', async (msg) => {
+    const phone = msg.contact.phone_number;
+    bot.sendMessage(msg.chat.id, `Phone number saved: ${phone}`);
+})
 
 // Listener (handler) for telegram's /start event
 // This event happened when you start the conversation with both by the very first time
