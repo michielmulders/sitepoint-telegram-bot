@@ -13,5 +13,9 @@
     "Javascript"
   ],
   "author": "Michiel Mulders",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^8.0.0",
+    "node-telegram-bot-api": "^0.30.0"
+  }
 }
