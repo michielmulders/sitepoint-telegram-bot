@@ -85,7 +85,7 @@ bot.on('callback_query', (callbackQuery) => {
 });
 
 // Listener (handler) for showcasing different keyboard layout
-bot.onText(/\/keyboard/, (msg, match) => {
+bot.onText(/\/keyboard/, (msg) => {
     bot.sendMessage(msg.chat.id, 'Alternative keybaord layout', {
         'reply_markup': {
             'keyboard': [['Sample text', 'Second sample'], ['Keyboard'], ['I\'m robot']],
@@ -94,6 +94,35 @@ bot.onText(/\/keyboard/, (msg, match) => {
             force_reply: true,
         }
     });
+});
+
+// Inline keyboard options
+const inlineKeyboard = {
+    reply_markup: {
+        inline_keyboard: [
+            [
+                {
+                    text: 'YES',
+                    callback_data: JSON.stringify({
+                        'command': 'survive',
+                        'answer': 'YES'
+                    })
+                },
+                {
+                    text: 'NO',
+                    callback_data: JSON.stringify({
+                        'command': 'kill',
+                        'answer': 'NO'
+                    })
+                },
+            ]
+        ]
+    }
+};
+
+// Listener (handler) for showcasing inline keyboard layout
+bot.onText(/\/inline/, (msg) => {
+    bot.sendMessage(msg.chat.id, 'You have to agree with me, OK?', inlineKeyboard);
 });
 
 // Keyboard layout for requesting phone number access
