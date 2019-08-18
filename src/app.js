@@ -107,14 +107,14 @@ const inlineKeyboard = {
                 {
                     text: 'YES',
                     callback_data: JSON.stringify({
-                        'command': 'survive',
+                        'command': 'mycommand1',
                         'answer': 'YES'
                     })
                 },
                 {
                     text: 'NO',
                     callback_data: JSON.stringify({
-                        'command': 'kill',
+                        'command': 'mycommand1',
                         'answer': 'NO'
                     })
                 },
