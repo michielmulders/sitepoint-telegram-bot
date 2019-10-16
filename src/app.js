@@ -20,8 +20,8 @@ bot.onText(/\/bookmark/, (msg, match) => {
     const url = match.input.split(' ')[1];
     // 'msg' is the received Message from Telegram
     // 'match' is the result of executing the regexp above on the text content
-    // of the message
-
+    // of the message.
+    
     if (url === undefined) {
         bot.sendMessage(
             chatId,
