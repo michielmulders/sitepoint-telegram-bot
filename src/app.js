@@ -12,6 +12,7 @@ const bot = new TelegramBot(token, {
 const URLs = [];
 const URLLabels = [];
 let tempSiteURL = '';
+const question = '';
 
 // Listener (handler) for telegram's /bookmark event
 bot.onText(/\/bookmark/, (msg, match) => {
@@ -145,6 +146,10 @@ bot.onText(/\/phone/, (msg) => {
     bot.sendMessage(msg.chat.id, 'Can we get access to your phone number?', requestPhoneKeyboard);
 });
 
+bot.onText(/\/question/,(msg)=> {
+    bot.sendMessage(msg.chat.id, 'Please ask me your question', requestPhoneKeyboard)
+}) ;
+
 // Handler for phone number request when user gives permission
 bot.on('contact', async (msg) => {
     const phone = msg.contact.phone_number;
@@ -159,11 +164,12 @@ bot.onText(/\/start/, (msg) => {
     bot.sendMessage(
         chatId,
         `
-            Welcome at <b>ArticleBot</b>, thank you for using my service
+            Welcome at <b>DHBW-Richie</b>, thank you for using my service
       
             Available commands:
         
             /bookmark <b>URL</b> - save interesting article URL
+            /question  <b>question</b> -   Ask a question to the bot
         `, {
             parse_mode: 'HTML',
         }
